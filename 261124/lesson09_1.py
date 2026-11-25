@@ -10,16 +10,25 @@ print("a반: ", class_a)
 print("b반: ", class_b)
 
 # 공통 과목 계산 
+print("")
 print(f"공통 과목: {sorted(class_a & class_b)}")
 
 # 한 반에만 있는 과목 계산
 print(f"a반에만 있는 과목: {sorted(class_a - class_b)}")
 
+# 모든 과목 계산
+print("")
+print(f"전체 과목: {sorted(class_a | class_b)}")
+
 # dict에 name과 subject 저장
 # dump 전에 set{}을 정렬된 list[]로 변환
 
-student = {"name" : "해인", "subject" : "국어"}
+student = {"name" : "해인", "subject" : sorted(class_a | class_b)}
 text = json.dumps(student, ensure_ascii=False)
 
+print("")
+print(text)
+
+print("")
 print(json.loads(text)["name"])
 print(json.loads(text)["subject"])

@@ -11,6 +11,7 @@ for raw in raw_score:
         
         if not 0 <= score <= 100:
             raise ValueError("range")
+            # raise 코드에서 예외(에러)를 강제로 발생시키는 키워드
         
         scores.append(score)
     
