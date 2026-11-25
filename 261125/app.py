@@ -59,6 +59,9 @@ appstart()
 productlist = {"product" : "book", "price" : 12000}, {"product" : "note", "price" : 8000}, {"product" : "pen", "price" : 1500}, {"product" : "bag", "price" : 25000}, {"product" : "cup", "price" : 6000}
 # 초기 상품 카탈로그를 딕셔너리 또는 (상품명, 가격) 튜플 리스트로 구성 // key : 값
 
+# └ 현재는 productlist는 튜플, 튜플 각각의 요소는 딕셔너리
+# └ 딕셔너리로만 선언하려면 productlist = {"book": 12000, "note": 8000, "pen": 1500, "bag": 25000, "cup": 6000}
+
 owned_items = {"book", "pen", "note"}
 wish_items = {"pen", "bag", "cup", "book"}
 # 사용자 프로필 및 보유/관심 상품 집합(set)을 초기화
