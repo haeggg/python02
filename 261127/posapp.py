@@ -90,7 +90,7 @@ else:
 
 # 3. 사이드바 데이터 로드 및 초기화 > 6번
 
-all_rows = base_rows + st.session_state.pos_order
+all_rows = base_rows + st.session_state.pos_orders
 
 
 
