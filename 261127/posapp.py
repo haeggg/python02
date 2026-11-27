@@ -69,20 +69,24 @@ if st.button("POS 입력 내역 초기화"):
 
 # 3. 사이드바 데이터 로드 및 초기화 > 5번
 
-if uploaded is None:
-    sample_path = Path(__file__).resolve().parent / "data" / "sales.csv"
-    if sample_path in None: 
-        base_rows = [{"product": "book", "quantity" : 2, "price" : 12000}, {"product": "pen", "quantity": 5, "price": 1500}]
+try:
+    if uploaded is None:
+        sample_path = Path(__file__).resolve().parent / "data" / "sales.csv"
+
+        if sample_path in None: 
+            base_rows = [{"product": "book", "quantity" : 2, "price" : 12000}, {"product": "pen", "quantity": 5, "price": 1500}]
+        else:
+            base_rows = parse_sales(sample_path.read_bytes())
+            
     else:
-        base_rows = parse_sales(sample_path.read_bytes())
-        
-else:
-    try:
-        base_rows = parse_sales(uploaded.getvalue())
-        st.sidebar.success(f"CSV에서 {len(base_rows)}행을 불러왔습니다.")
-                    
-    except ValueError as exc:
-        st.sidebar.error(str(exc))
+        try:
+            base_rows = parse_sales(uploaded.getvalue())
+            st.sidebar.success(f"CSV에서 {len(base_rows)}행을 불러왔습니다.")
+                        
+        except ValueError as exc:
+            st.sidebar.error(str(exc))
+except:
+    st.info("오류")
 
 # 3. 사이드바 데이터 로드 및 초기화 > 6번
 
