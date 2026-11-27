@@ -66,7 +66,7 @@ if st.button("요약 캐시 초기화"):
 
 if st.button("POS 입력 내역 초기화"):
     st.session_state.pos_orders = []
-    st.sidebar.success("현장 주문 내역이 초기화되었습니다.")
+    st.sidebar.warning("현장 주문 내역이 초기화되었습니다.")
 
 
 
