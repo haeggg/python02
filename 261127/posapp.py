@@ -181,7 +181,7 @@ with tab3:
             st.write(msg["content"])
 
     # 탭 3: 💬 매출 도우미 챗봇 > 2번
-    question = st.char_input("매출에 대해 질문해 보세요 (예] 총 매출 알려줘, 가장 잘 팔린 상품은?)")
+    question = st.chat_input("매출에 대해 질문해 보세요 (예] 총 매출 알려줘, 가장 잘 팔린 상품은?)")
     st.session_state.messages.append(question) #맞는 지 확인
 
     
