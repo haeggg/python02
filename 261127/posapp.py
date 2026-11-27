@@ -126,13 +126,14 @@ with tab1:
         st.subheader("상세 거래 내역")
 
         if filtered in None:
-            df = pd.DataFrame(filtered)
-            df["subtotal"] = df["quantity"] * df["price"]
-
-            st.dataframe(df, use_container_width = True, hide_index = True)
+            st.info("표시할 데이터가 없습니다.")
 
         else:
-            st.info("표시할 데이터가 없습니다.")
+            df = pd.DataFrame(filtered)
+            df["subtotal"] = df["quantity"] * df["price"]
+            
+            st.dataframe(df, use_container_width = True, hide_index = True)
+            
 
     with right:
         st.subheader("상품별 매출 비중")
