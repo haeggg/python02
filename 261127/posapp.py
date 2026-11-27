@@ -162,10 +162,11 @@ with tab2:
     submitted = st.form_submit_button("주문 추가")
 
     # 탭 2: 💳 POS 주문 입력 > 3번
-    clean_name = p_name.strip()
-    if not clean_name or len(clean_name) > 40:
-        st.session_state.pos_orders.append({"product": clean_name, "quantity": int(p_qty), "price": int(p_price)})
-        st.success(f"'{clean_name}' {p_qty}개 (총 {p_qty * p_price}원) 주문이 등록되었습니다! 대시보드 탭에서 확인하세요.")
+    if submitted:
+        clean_name = p_name.strip()
+        if not clean_name or len(clean_name) > 40:
+            st.session_state.pos_orders.append({"product": clean_name, "quantity": int(p_qty), "price": int(p_price)})
+            st.success(f"'{clean_name}' {p_qty}개 (총 {p_qty * p_price}원) 주문이 등록되었습니다! 대시보드 탭에서 확인하세요.")
 
 
 # 4. 메인 3개 탭 구현 요구사항 > 탭 3: 💬 매출 도우미 챗봇
