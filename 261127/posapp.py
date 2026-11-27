@@ -85,12 +85,13 @@ try:
                         
         except ValueError as exc:
             st.sidebar.error(str(exc))
-except:
-    st.info("오류")
+
 
 # 3. 사이드바 데이터 로드 및 초기화 > 6번
 
-all_rows = base_rows + st.session_state.pos_order
+    all_rows = base_rows + st.session_state.pos_order
+except:
+    st.info("오류")
 
 
 
