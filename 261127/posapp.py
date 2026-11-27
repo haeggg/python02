@@ -24,11 +24,19 @@ st.write("**학습 목료** : 입력('form'), 상태 유지('session_state'), �
 
 # 2. 세션 상태 및 캐싱 함수 > 1번
 
-st.title("세션 카운터")
-if "count" not in st.session_state:
-    st.session_state.count = 0
-if st.button("증가"):
-    st.session_state.count += 1
-if st.button("초기화"):
-    st.session_state.count = 0
-    st.metric("현재 값", st.session_state.count)
+if "pos_order" not in st.session_state:
+    st.session_state.pos_order = []
+    
+
+# 2. 세션 상태 및 캐싱 함수 > 2번
+
+if "message" not in st.session_state:
+    st.session_state.message = [{"role": "assistant", "content": "안녕하세요! '총매출', '인기상품', '주문건수' 등을 물어보세요."}]
+
+
+# 2. 세션 상태 및 캐싱 함수 > 3번
+
+@st.cache_data(ttl=60)
+
+def get_cached_summary(rows):
+    return summarize(rows)
