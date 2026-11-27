@@ -121,7 +121,7 @@ with tab1:
     col3.metric("거래 건수", f"{len(filtered)}건")
 
     # 탭 1: 📊 매출 대시보드 > 4번
-    left, right = st.columns(1.2, 2)
+    left, right = st.columns([1.2, 2])
     with left:
         st.subheader("상세 거래 내역")
 
