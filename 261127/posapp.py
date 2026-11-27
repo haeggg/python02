@@ -36,7 +36,53 @@ if "messages" not in st.session_state:
 
 # 2. 세션 상태 및 캐싱 함수 > 3번
 
-@st.cache_data(ttl=60)
+@st.cache_data(ttl = 60)
 
 def get_cached_summary(rows):
     return summarize(rows)
+
+
+
+
+
+# 3. 사이드바 데이터 로드 및 초기화 > 1번
+
+st.sidebar.header("⚙️ 데이터 관리")
+
+# 3. 사이드바 데이터 로드 및 초기화 > 2번
+
+uploaded = st.sidebar.file_uploader("추가 매출 CSV 업로드(UTF-8)", type=["csv"])
+
+# 3. 사이드바 데이터 로드 및 초기화 > 3번
+
+if st.button("요약 캐시 초기화"):
+    get_cached_summary.clear()
+    st.sidebar.success("캐시를 초기화했습니다.")
+
+# 3. 사이드바 데이터 로드 및 초기화 > 4번
+
+if st.button("POS 입력 내역 초기화"):
+    st.session_state.pos_orders = []
+    st.sidebar.warning("현장 주문 내역이 초기화되었습니다.")
+
+
+# 3. 사이드바 데이터 로드 및 초기화 > 5번
+
+if uploaded is None:
+    sample_path = Path(__file__).resolve().parents / "data" / "sales.csv"
+    if sample_path in None: 
+        base_rows = [{"product": "book", "quantity" : 2, "price" : 12000}, {"product": "pen", "quantity": 5, "price": 1500}]
+    else:
+        base_rows = parse_sales(sample_path.read_bytes())
+        
+else:
+    try:
+        base_rows = parse_sales(uploaded.getvalue())
+        st.sidebar.success(f"CSV에서 {len(base_rows)}행을 불러왔습니다.")
+                    
+    except ValueError as exc:
+        st.sidebar.error(str(exc))
+
+# 3. 사이드바 데이터 로드 및 초기화 > 6번
+
+all_rows = base_rows + st.session_state.pos_order
