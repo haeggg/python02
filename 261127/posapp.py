@@ -74,7 +74,7 @@ if uploaded is None:
     sample_path = Path(__file__).resolve().parent / "data" / "sales.csv"
     raw = uploaded.getvalue() if uploaded else sample_path.read_bytes
     
-    if sample_path in None: 
+    if sample_path is None: 
         base_rows = [{"product": "book", "quantity" : 2, "price" : 12000}, {"product": "pen", "quantity": 5, "price": 1500}]
     else:
         base_rows = parse_sales(sample_path.read_bytes())
