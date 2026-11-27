@@ -125,7 +125,7 @@ with tab1:
     with left:
         st.subheader("상세 거래 내역")
 
-        if filtered in None:
+        if filtered is None:
             st.info("표시할 데이터가 없습니다.")
 
         else:
