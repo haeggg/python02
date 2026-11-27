@@ -6,8 +6,6 @@ import streamlit as st
 from pathlib import Path
 from common import parse_sales, summarize
 
-uploaded = st.file_uploader("UTF-8 CSV", type=["csv"])
-
 
 # 1. 기본 환경 및 모듈 임포트 > 3번
 
@@ -56,7 +54,7 @@ st.sidebar.header("⚙️ 데이터 관리")
 
 # 3. 사이드바 데이터 로드 및 초기화 > 2번
 
-st.sidebar.file_uploader("추가 매출 CSV 업로드(UTF-8)", type=["csv"])
+uploaded = st.sidebar.file_uploader("추가 매출 CSV 업로드(UTF-8)", type=["csv"])
 
 # 3. 사이드바 데이터 로드 및 초기화 > 3번
 
@@ -67,8 +65,7 @@ if st.button("요약 캐시 초기화"):
 # 3. 사이드바 데이터 로드 및 초기화 > 4번
 
 if uploaded is None:
-    sample_path = Path(__file__).resolve().parents[1] / "data" / "sales.csv"
-    base_rows = parse_sales(sample_path.read_bytes())
+    
     base_rows = [{"product": "book", "quantity" : 2, "price" : 12000}, {"product": "pen", "quantity": 5, "price": 1500}]
 
 else:
@@ -81,4 +78,6 @@ else:
 
 # 3. 사이드바 데이터 로드 및 초기화 > 5번
 
-all_rows = base_rows + st.session_state.pos_orders
+all_rows = base_rows + st.session_state.pos_order
+
+
