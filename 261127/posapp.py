@@ -60,9 +60,7 @@ st.sidebar.file_uploader("추가 매출 CSV 업로드(UTF-8)", type=["csv"])
 
 # 3. 사이드바 데이터 로드 및 초기화 > 3번
 
-if st.botton("요약 캐시 초기화"):
-    get_cached_summary.clear()
-    st.sidebar.success("캐시를 초기화했습니다.")
+
 
 # 3. 사이드바 데이터 로드 및 초기화 > 4번
 
