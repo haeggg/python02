@@ -148,25 +148,25 @@ with tab2:
 
     # 탭 2: 💳 POS 주문 입력 > 1번
     st.subheader("신규 현장 주문 등록")
-    st.form("pos_form", clear_on_submit=True)
+    with st.form("pos_form", clear_on_submit=True):
 
-    # 탭 2: 💳 POS 주문 입력 > 2-1번
-    p_name = st.text_input("상품명 (1~40자): ")
+        # 탭 2: 💳 POS 주문 입력 > 2-1번
+        p_name = st.text_input("상품명 (1~40자): ")
 
-    # 탭 2: 💳 POS 주문 입력 > 2-2번
-    c1, c2 = st.columns(2)
-    p_qty = c1.number_input("수량: ", min_value=1, max_value=1000, value=1)
-    p_price = c2.number_input("단가(원): ", min_value=100, max_value=1_000_000, value=5000, step=500)
+        # 탭 2: 💳 POS 주문 입력 > 2-2번
+        c1, c2 = st.columns(2)
+        p_qty = c1.number_input("수량: ", min_value=1, max_value=1000, value=1)
+        p_price = c2.number_input("단가(원): ", min_value=100, max_value=1_000_000, value=5000, step=500)
 
-    # 탭 2: 💳 POS 주문 입력 > 2-3번
-    submitted = st.form_submit_button("주문 추가")
+        # 탭 2: 💳 POS 주문 입력 > 2-3번
+        submitted = st.form_submit_button("주문 추가")
 
-    # 탭 2: 💳 POS 주문 입력 > 3번
-    if submitted:
-        clean_name = p_name.strip()
-        if not clean_name or len(clean_name) > 40:
-            st.session_state.pos_orders.append({"product": clean_name, "quantity": int(p_qty), "price": int(p_price)})
-            st.success(f"'{clean_name}' {p_qty}개 (총 {p_qty * p_price}원) 주문이 등록되었습니다! 대시보드 탭에서 확인하세요.")
+        # 탭 2: 💳 POS 주문 입력 > 3번
+        if submitted:
+            clean_name = p_name.strip()
+            if not clean_name or len(clean_name) > 40:
+                st.session_state.pos_orders.append({"product": clean_name, "quantity": int(p_qty), "price": int(p_price)})
+                st.success(f"'{clean_name}' {p_qty}개 (총 {p_qty * p_price}원) 주문이 등록되었습니다! 대시보드 탭에서 확인하세요.")
 
 
 # 4. 메인 3개 탭 구현 요구사항 > 탭 3: 💬 매출 도우미 챗봇
