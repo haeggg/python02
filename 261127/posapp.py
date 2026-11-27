@@ -60,22 +60,24 @@ st.sidebar.file_uploader("추가 매출 CSV 업로드(UTF-8)", type=["csv"])
 
 # 3. 사이드바 데이터 로드 및 초기화 > 3번
 
-
+if st.botton("요약 캐시 초기화"):
+    get_cached_summary.clear()
+    st.sidebar.success("캐시를 초기화했습니다.")
 
 # 3. 사이드바 데이터 로드 및 초기화 > 4번
 
-    if uploaded is None:
-        sample_path = Path(__file__).resolve().parents[1] / "data" / "sales.csv"
-        base_rows = parse_sales(sample_path.read_bytes())
-        base_rows = [{"product": "book", "quantity" : 2, "price" : 12000}, {"product": "pen", "quantity": 5, "price": 1500}]
+if uploaded is None:
+    sample_path = Path(__file__).resolve().parents[1] / "data" / "sales.csv"
+    base_rows = parse_sales(sample_path.read_bytes())
+    base_rows = [{"product": "book", "quantity" : 2, "price" : 12000}, {"product": "pen", "quantity": 5, "price": 1500}]
 
-    else:
-        try:
-            base_rows = parse_sales(uploaded.getvalue())
-            st.sidebar.success(f"CSV에서 {len(base_rows)}행을 불러왔습니다.")
+else:
+    try:
+        base_rows = parse_sales(uploaded.getvalue())
+        st.sidebar.success(f"CSV에서 {len(base_rows)}행을 불러왔습니다.")
                     
-        except ValueError as exc:
-            st.sidebar.error(str(exc))
+    except ValueError as exc:
+        st.sidebar.error(str(exc))
 
 # 3. 사이드바 데이터 로드 및 초기화 > 5번
 
