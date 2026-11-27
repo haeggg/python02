@@ -65,9 +65,12 @@ if st.button("요약 캐시 초기화"):
 # 3. 사이드바 데이터 로드 및 초기화 > 4번
 
 if uploaded is None:
-    
-    base_rows = [{"product": "book", "quantity" : 2, "price" : 12000}, {"product": "pen", "quantity": 5, "price": 1500}]
-
+    sample_path = Path(__file__).resolve().parents[1] / "data" / "sales.csv"
+    if uploaded in None: 
+        base_rows = [{"product": "book", "quantity" : 2, "price" : 12000}, {"product": "pen", "quantity": 5, "price": 1500}]
+    else:
+        base_rows = parse_sales(sample_path.read_bytes())
+        
 else:
     try:
         base_rows = parse_sales(uploaded.getvalue())
