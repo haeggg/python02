@@ -60,7 +60,8 @@ st.sidebar.file_uploader("추가 매출 CSV 업로드(UTF-8)", type=["csv"])
 
 # 3. 사이드바 데이터 로드 및 초기화 > 3번
 
-
+if st.button("인사"):
+    st.write("안녕하세요, '학습자'님")
 
 # 3. 사이드바 데이터 로드 및 초기화 > 4번
 
