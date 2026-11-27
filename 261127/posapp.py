@@ -177,7 +177,7 @@ with tab3:
     st.subheader("데이터 기반 간단 Q & A")
 
     for msg in st.session_state.messages:
-        with st.chat_messages(msg["role"]):
+        with st.chat_message(msg["role"]):
             st.write(msg["content"])
 
     # 탭 3: 💬 매출 도우미 챗봇 > 2번
