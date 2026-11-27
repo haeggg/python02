@@ -25,4 +25,4 @@ st.write("**학습 목료** : 입력('form'), 상태 유지('session_state'), �
 # 2. 세션 상태 및 캐싱 함수 > 1번
 
 if "pos_order" not in st.session_state:
-    st.session_state.pos_order() = []
+    st.session_state.pos_order = []
