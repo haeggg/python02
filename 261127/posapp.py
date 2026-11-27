@@ -155,10 +155,8 @@ with tab2:
 
     # 탭 2: 💳 POS 주문 입력 > 2-2번
     c1, c2 = st.columns(2)
-    with c1: 
-        p_qty = c1.number_input("수량: ", min_value=1, max_value=1000, value=1)
-    with c2:
-        p_price = c2.number_input("단가(원): ", min_value=100, max_value=1_000_000, value=5000, step=500)
+    p_qty = c1.number_input("수량: ", min_value=1, max_value=1000, value=1)
+    p_price = c2.number_input("단가(원): ", min_value=100, max_value=1_000_000, value=5000, step=500)
 
     # 탭 2: 💳 POS 주문 입력 > 2-3번
     submitted = st.form_submit_button("주문 추가")
