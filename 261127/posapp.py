@@ -6,6 +6,8 @@ import streamlit as st
 from pathlib import Path
 from common import parse_sales, summarize
 
+uploaded = st.file_uploader("UTF-8 CSV", type=["csv"])
+
 
 # 1. 기본 환경 및 모듈 임포트 > 3번
 
@@ -32,9 +34,8 @@ if "pos_order" not in st.session_state:
 
 # 2. 세션 상태 및 캐싱 함수 > 2번
 
-# if "message" not in st.session_state:
-    
-#  초기 안내 메시지 [{"role": "assistant", "content": "안녕하세요! '총매출', '인기상품', '주문건수' 등을 물어보세요."}] 설정
+if "message" not in st.session_state:
+    st.session_state = [{"role": "assistant", "content": "안녕하세요! '총매출', '인기상품', '주문건수' 등을 물어보세요."}]
 
 
 # 2. 세션 상태 및 캐싱 함수 > 3번
@@ -65,7 +66,18 @@ if st.bottom("요약 캐시 초기화"):
 
 # 3. 사이드바 데이터 로드 및 초기화 > 4번
 
+    if uploaded is None:
+        sample_path = Path(__file__).resolve().parents[1] / "data" / "sales.csv"
+        base_rows = parse_sales(sample_path.read_bytes())
+        base_rows = [{"product": "book", "quantity" : 2, "price" : 12000}, {"product": "pen", "quantity": 5, "price": 1500}]
 
+    else:
+        try:
+            base_rows = parse_sales(uploaded.getvalue())
+            st.sidebar.success(f"CSV에서 {len(base_rows)}행을 불러왔습니다.")
+                    
+        except ValueError as exc:
+            st.sidebar.error(str(exc))
 
 # 3. 사이드바 데이터 로드 및 초기화 > 5번
 
@@ -132,7 +144,7 @@ with tab2:
     # 탭 2: 💳 POS 주문 입력 > 2-2번
     c1, c2 = st.columns(2)
     p_qty = c1.number_input("수량: ", min_value=1, max_value=1000, value=1)
-    p_price = c2.number_input("단가(원): " min_value=100, max_value=1_000_000, value=5000, step=500)
+    p_price = c2.number_input("단가(원): ", min_value=100, max_value=1_000_000, value=5000, step=500)
 
     # 탭 2: 💳 POS 주문 입력 > 2-3번
     submitted = st.form_submit_button("주문 추가")
@@ -148,3 +160,6 @@ with tab2:
 
 with tab3:
     st.subheader("데이터 기반 간단 Q & A")
+
+   
+
