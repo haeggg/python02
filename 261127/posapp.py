@@ -27,3 +27,5 @@ st.write("**학습 목료** : 입력('form'), 상태 유지('session_state'), �
 
 if "message" not in st.session_state:
     st.session_state.message = [{"role": "assistant", "content": "안녕하세요! '총매출', '인기상품', '주문건수' 등을 물어보세요."}]
+
+st.metric("현재 값", st.session_state.count)
