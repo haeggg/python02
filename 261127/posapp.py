@@ -23,7 +23,7 @@ st.write("**학습 목료** : 입력('form'), 상태 유지('session_state'), �
 
 
 
-# 2. 세션 상태 및 캐싱 함수 > 1번
+# 2. 세션 상태 및 캐싱 함수 > 2번
 
-if "todos" not in st.session_state:
-    st.session_state.todos = []
+if "message" not in st.session_state:
+    st.session_state.message = [{"role": "assistant", "content": "안녕하세요! '총매출', '인기상품', '주문건수' 등을 물어보세요."}]
