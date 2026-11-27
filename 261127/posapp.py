@@ -214,8 +214,9 @@ with tab3:
             reply = f"총 거래 건수는 **{len(all_rows)}건**, 총 판매 수량은 **{total_summary['quantity']:,}개**입니다."
 
     # 탭 3: 💬 매출 도우미 챗봇 > 4번
-
-        st.session_state.messages.append({"assistant" : reply})
+        st.session_state.messages.append({"role": "user", "content": question})
+        st.session_state.messages.append({"role": "assistant", "content" : reply})
 
     for message in st.session_state.messages:
-        st.chat_message("assistant")
+        with st.chat_message(message["role"]):
+            st.write(message["content"])
