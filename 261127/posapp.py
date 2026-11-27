@@ -71,12 +71,13 @@ if st.button("POS 입력 내역 초기화"):
 
 
 if uploaded is None:
-    uploaded = Path(__file__).resolve().parent / "data" / "sales.csv"
-
-    if uploaded in None: 
+    sample_path = Path(__file__).resolve().parent / "data" / "sales.csv"
+    raw = uploaded.getvalue() if uploaded else sample_path.read_bytes()
+    
+    if raw in None: 
         base_rows = [{"product": "book", "quantity" : 2, "price" : 12000}, {"product": "pen", "quantity": 5, "price": 1500}]
     else:
-        base_rows = parse_sales(uploaded.read_bytes())
+        base_rows = parse_sales(sample_path.read_bytes())
             
 else:
     try:
