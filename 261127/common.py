@@ -1,11 +1,11 @@
 import csv
 import io
 
-FIELDS = {'product', 'quantity', 'price'}
+FIELDS = ['product', 'quantity', 'price']
 
 def parse_sales(raw):
     if len(raw) > 100_000:
-        raise ValueError('파일은 100KB 이하로 준비하세요.')
+        raise ValueError("파일은 100KB 이하로 준비하세요.")
     try:
         text = raw.decode('utf-8-sig')
         reader = csv.DictReader(io.StringIO(text), strict=True)
@@ -40,7 +40,7 @@ def parse_sales(raw):
 
             rows.append(dict(product = product, quantity = numeric[0], price = numeric[1]))
 
-            return rows
+        return rows
         
     except UnicodeDecodeError as exc:
         raise ValueError("UTF-8 CSV를 사용하세요.") from exc
